@@ -76,17 +76,45 @@ img{
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
-
-.cool--s{
-  position: fixed;
-  bottom: 2%;
-  right: 2%;
-  height: 1em;
+.coffee--stain{
+  position: absolute;
+  
+  right:1em;
+  top: 30em;
+  height: 20em;
   width: auto;
+  opacity: 0.5;
+  z-index: -1;
+}
+.pencil{
+  position: absolute;
+  top: 55em;
+  left: 7em;
+  height: 20em;
+  width: auto;
+  transform: rotate(100deg);
+  z-index: -1;
+}
+.cool--s{
+  position: absolute;
+  top: 47em;
+  left: 5em;
+  height: 3em;
+  width: auto;
+  transform: rotate(-7deg);
 }
 .cool--s:hover{
   animation: shake 0.25s;
   animation-iteration-count: infinite;
   height: 50em;
   width: auto;
+}
+.paper{
+  position: absolute;
+  top: 40em;
+  left: 1em;
+  height: 40em;
+  width: auto;
+  transform: rotate(-7deg);
+  z-index: -1;
 }

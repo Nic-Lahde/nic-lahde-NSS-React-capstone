@@ -27,7 +27,7 @@ input.form-control{
 .create--game--button{
    text-align: center;
 }
-.collection--list{
+.collection--list, .profile{
     background-color: #E0FBFC;
     background-image: url(https://c1.wallpaperflare.com/preview/583/849/241/paper-crease-creased-texture.jpg);
     padding: 1em;
@@ -45,4 +45,7 @@ input.form-control{
 .collection--item--image:hover{
     height: 25em;
     width: auto;
+}
+#edit--bio{
+    width: 90%;
 }

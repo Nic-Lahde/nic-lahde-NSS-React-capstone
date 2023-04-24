@@ -44,6 +44,7 @@ export const Profile = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
+                        id="edit--bio"
                         placeholder="Edit your bio"
                         value={profile.bio}
                         onChange={
