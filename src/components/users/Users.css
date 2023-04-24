@@ -42,3 +42,7 @@ input.form-control{
 .collection--button{
     margin-top: 0.5em;
 }
+.collection--item--image:hover{
+    height: 25em;
+    width: auto;
+}

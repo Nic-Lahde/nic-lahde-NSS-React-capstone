@@ -29,6 +29,10 @@ div.form-group{
     width: auto;
     height: 12em;
 }
+.event--details--image:hover{
+    width: auto;
+    height: 25em;
+}
 .dismiss--button, .cancel--button, .leave--button, .join--button{
     margin: 0.5em;
 }
