@@ -16,7 +16,7 @@ export const ApplicationViews = () => {
                         <h1>The Kitchen Table</h1>
                         <img className="main--header--image" alt="four meeples" src="../images/meeples.png" />
                     </div>
-                    <h3>Connecting meeples since 2023</h3>
+                    <h3>Connecting meeple since 2023</h3>
 
                     <Outlet />
                 </>

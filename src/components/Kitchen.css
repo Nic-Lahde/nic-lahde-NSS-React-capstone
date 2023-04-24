@@ -60,7 +60,7 @@ img{
   top: 1em;
 }
 .main--header--image:hover{
-  animation: shake 1s;
+  animation: shake 1.5s;
   animation-iteration-count: infinite;
 }
 @keyframes shake {
