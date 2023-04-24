@@ -1,0 +1,59 @@
+form.eventForm{
+    text-align: center;
+}
+select.form-control{
+    width: 30%;
+}
+input.form-control{
+    width: 30%;
+}
+.details--button{
+    margin-left: 1.5em;
+
+    float:right;
+}
+.player--event--list--item, .hosted--event--list--item, .event--list--item{
+    margin-bottom: 1em;
+}
+.radio--buttons{
+    text-align: center;
+}
+div.form-group{
+    text-align: center;
+}
+.event--details{
+    text-align: center;
+    font-size: 18px;
+}
+.event--details--image{
+    width: auto;
+    height: 12em;
+}
+.dismiss--button, .cancel--button, .leave--button, .join--button{
+    margin: 0.5em;
+}
+.results--box{
+   background-color: #E0FBFC;
+   background-image: url(https://c1.wallpaperflare.com/preview/583/849/241/paper-crease-creased-texture.jpg);
+    padding: 1em;
+    width: 50%;
+    height: 100%;
+    margin: auto;
+    border: solid #293241 3px;
+    border-radius: 10px;
+}
+.results--box--no--buttons{
+     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.show--all--events--button{
+    margin: 1em;
+    text-align: center;
+    
+}
+
+.details--buttons--container{
+    text-align: center;
+}

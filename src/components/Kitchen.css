@@ -1,0 +1,57 @@
+/* Import the google web fonts you want to use */
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Happy+Monkey&family=Orbitron:wght@400;800&family=Quicksand&family=Roboto&family=Seaweed+Script&display=swap');
+
+/*Typography
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+textarea {
+  color: #cecaca;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: 'Chelsea Market', Arial, sans-serif;
+}
+
+body {
+    padding: 0 3rem;
+    background-image: url(https://mcdn.wallpapersafari.com/medium/62/34/64cbXQ.jpg);
+    background-color: #98C1D9;
+    color: #3D5A80;
+    font-weight: bold;
+    
+}
+button{
+    background-color: #293241;
+    color: #EE6C4D;
+    font-weight: bold;
+}
+button:hover{
+  background-color:#EE6C4D;
+  color:  #293241;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Chelsea Market', Arial, sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px #EE6C4D;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+.title--main {
+  margin-block-end: 0;
+}
+img{
+  width: auto;
+  height: 5em;
+}
+.main--header{
+  display: flex;
+  justify-content: center;
+}
