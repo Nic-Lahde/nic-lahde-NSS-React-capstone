@@ -12,9 +12,9 @@ export const ApplicationViews = () => {
             <Route path="/" element={
                 <>
                     <div className="main--header">
-                        {/* <img alt="two red dice" src="https://www.publicdomainpictures.net/pictures/380000/nahled/two-dice-fly-on-the-rool-with-shado.png"/> */}
+                        <img alt="two dice" src="https://www.publicdomainpictures.net/pictures/380000/nahled/two-dice-fly-on-the-rool-with-shado.png"/>
                         <h1>The Kitchen Table</h1>
-                        {/* <img alt="chess knight" src="https://p0.pxfuel.com/preview/105/454/364/game-characters-colorful-wood-play-stone.jpg"/> */}
+                        <img alt="four meeples" src="../images/meeples.png"/>
                     </div>
                     <h3>Connecting meeples since 2023</h3>
 
