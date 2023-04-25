@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
-// import "./Users.css"
+import { useNavigate } from "react-router-dom"
+import "./Users.css"
 
 export const Profile = () => {
 
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
+    const navigate = useNavigate()
 
     const [profile, setProfile] = useState({
         name:"",
@@ -33,6 +35,19 @@ export const Profile = () => {
         })
         .then(response => response.json())
     }
+    const handleDeleteButtonClick = (event) =>{
+        event.preventDefault()
+        if(window.confirm("This action is irreversible. Are you sure?") === true){
+           return fetch(`http://localhost:8088/users/${kitchenUserObject.id}`,{
+            method: "DELETE"
+            }).then(navigate("/login"))
+        }
+        else{
+           return window.alert("coward")
+        }
+
+        
+    }
     return <article className="profile">
         <section>Name: {profile.name}</section>
         <section>Email: {profile.email}</section>
@@ -56,6 +71,7 @@ export const Profile = () => {
                         } />
                 </div>
             </fieldset>
-            <button onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Update profile</button>
+            <button className="update--profile--button" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Update Profile</button>
+            <button className="delete--profile--button" onClick={(clickEvent) => handleDeleteButtonClick(clickEvent)}>Delete My Account</button>
     </article>
 }

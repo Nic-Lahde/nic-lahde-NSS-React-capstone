@@ -49,3 +49,7 @@ input.form-control{
 #edit--bio{
     width: 90%;
 }
+.delete--profile--button{
+    margin-left: 10%;
+    margin-top: 10px;
+}

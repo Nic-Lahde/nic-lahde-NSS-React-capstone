@@ -116,7 +116,7 @@ export const HostEvent = () => {
             <button
                 onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
                 className="btn btn-primary">
-                Host this event
+                Host This Event
             </button>
         </form>
     )
