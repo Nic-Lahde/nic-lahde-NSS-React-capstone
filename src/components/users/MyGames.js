@@ -5,7 +5,6 @@ import "./Users.css"
 export const MyGames = () => {
     const [allGames, setAllGames] = useState([])
     const [ownedGames, setOwnedGames] = useState([])
-    const [gameAdded, setGameAdded] = useState(false)
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
     const gameToAdd = {
@@ -22,29 +21,19 @@ export const MyGames = () => {
         },
         []
     )
+    const myCollection = () => {
+        return fetch(`http://localhost:8088/usersGames?usersId=${kitchenUserObject.id}&_expand=games`)
+        .then(res => res.json())
+        .then(data => {
+            const sortedData = data.sort((a, b) => a.games.name.localeCompare(b.games.name))
+            setOwnedGames(sortedData)
+        })
+    }
     useEffect(
         () => {
-            fetch(`http://localhost:8088/usersGames?usersId=${kitchenUserObject.id}&_expand=games`)
-                .then(res => res.json())
-                .then(data => {
-                    const sortedData = data.sort((a, b) => a.games.name.localeCompare(b.games.name))
-                    setOwnedGames(sortedData)
-                })
-
+           myCollection()
         },
         []
-    )
-    useEffect(
-        () => {
-            fetch(`http://localhost:8088/usersGames?usersId=${kitchenUserObject.id}&_expand=games`)
-                .then(res => res.json())
-                .then(data => {
-                    const sortedData = data.sort((a, b) => a.games.name.localeCompare(b.games.name))
-                    setOwnedGames(sortedData)
-                })
-
-        },
-        [gameAdded]
     )
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -61,12 +50,7 @@ export const MyGames = () => {
         })
             .then(response => response.json())
             .then(() => {
-                if (gameAdded) {
-                    setGameAdded(false)
-                }
-                else {
-                    setGameAdded(true)
-                }
+               myCollection()
 
             })}
     }
@@ -75,12 +59,7 @@ export const MyGames = () => {
         fetch(`http://localhost:8088/usersGames/${event.target.value}`, {
             method: "DELETE"
         }).then(() => {
-            if (gameAdded) {
-                setGameAdded(false)
-            }
-            else {
-                setGameAdded(true)
-            }
+           myCollection()
 
         })
     }
