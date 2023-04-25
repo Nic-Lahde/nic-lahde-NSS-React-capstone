@@ -21,6 +21,7 @@ export const FindEvent = () => {
         startDate: "",
         endDate: ""
     })
+    const [weightSearchTerms, setWeightSearchTerms] = useState(0)
     const navigate = useNavigate()
     useEffect(
         () => {
@@ -60,6 +61,10 @@ export const FindEvent = () => {
         });
         setFilteredEvents(searchedEvents);
     }, [dateSearchTerms]);
+    useEffect(() => {
+        const searchedEvents = allEvents.filter(event => event?.games?.weight >= weightSearchTerms && event?.games?.weight < weightSearchTerms + 1)
+        setFilteredEvents(searchedEvents)
+    },[weightSearchTerms])
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value)
     }
@@ -81,7 +86,6 @@ export const FindEvent = () => {
                         />
                         Search by game
                     </label>
-
                     <label>
                         <input
                             type="radio"
@@ -91,6 +95,16 @@ export const FindEvent = () => {
                             onChange={handleOptionChange}
                         />
                         Search by date
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="options"
+                            value="weight"
+                            checked={selectedOption === "weight"}
+                            onChange={handleOptionChange}
+                        />
+                        Search by weight
                     </label>
                 </div>
                 {selectedOption === "game" && (<input
@@ -137,6 +151,19 @@ export const FindEvent = () => {
                             } />
                     </div>
                 </fieldset></div>)}
+                {selectedOption === "weight" && (<select
+                    className="form-control"
+                    onChange={
+                        (changeEvent) => {
+                            const parsedValue = parseInt(changeEvent.target.value)
+                            setWeightSearchTerms(parsedValue)
+                        }
+                    }
+                     ><option defaultValue="0">Weight/complexity rating</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4 +</option></select>)}
             <div className="show--all--events--container">
                 <div className="show--all--events--button">
                     <button onClick={() => { setFilteredEvents(allEvents); setSelectedOption(""); }}>Show All Events</button>
