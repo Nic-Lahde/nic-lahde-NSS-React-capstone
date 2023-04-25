@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import "./Events.css"
 import { useNavigate } from "react-router-dom"
+import { remainingSeats } from "./FindEvent"
 export const MyEvents = () => {
     const [myEvents, setMyEvents] = useState([])
     const [myPlayerEvents, setMyPlayerEvents] = useState([])
+    const [allPlayers, setAllPlayers] = useState([])
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
     const navigate = useNavigate()
@@ -26,6 +28,17 @@ export const MyEvents = () => {
                     const sortedEvents = events.sort((a, b) => a.date.localeCompare(b.date))
                     const matchingPlayerEvents = sortedEvents.filter(event => players.find(player => player.eventsId == event.id))
                     setMyPlayerEvents(matchingPlayerEvents)
+                })
+
+        },
+        []
+    )
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/players`)
+                .then(res => res.json())
+                .then(data => {
+                    setAllPlayers(data)
                 })
 
         },
@@ -61,12 +74,13 @@ export const MyEvents = () => {
                         minute: "numeric",
                     };
                     const readableDate = dateObj.toLocaleString("en-US", options);
+                    const availableSeats = remainingSeats(event, allPlayers)
                     return (
                         <section
                             className="hosted--event--list--item"
                             key={`host--event--${event.id}`}
                         >
-                            {event?.games?.name} at {event?.location} on {readableDate}
+                            {event?.games?.name} at {event?.location} on {readableDate} {availableSeats === 0 && (<p className="full--tag">FULL</p>)}
                             <button
                                 key={`details--button--hosted${event.id}`}
                                 onClick={(clickEvent) => handleDetailsButton(clickEvent)}
@@ -94,12 +108,13 @@ export const MyEvents = () => {
                         minute: "numeric",
                     };
                     const readableDate = dateObj.toLocaleString("en-US", options);
+                    const availableSeats = remainingSeats(event, allPlayers)
                     return (
                         <section
                             className="player--event--list--item"
                             key={`player--event--${event.id}`}
                         >
-                            {event?.games?.name} at {event?.location} on {readableDate}
+                            {event?.games?.name} at {event?.location} on {readableDate} {availableSeats === 0 && (<p className="full--tag">FULL</p>)}
                             <button
                                 key={`details--button--player${event.id}`}
                                 onClick={(clickEvent) => handleDetailsButton(clickEvent)}

@@ -57,7 +57,13 @@ div.form-group{
     text-align: center;
     
 }
-
 .details--buttons--container{
     text-align: center;
+}
+.full--tag{
+    display: inline;
+   color: crimson;
+   border: solid crimson 2px;
+   padding-left: 2px;
+   padding-right: 2px;
 }

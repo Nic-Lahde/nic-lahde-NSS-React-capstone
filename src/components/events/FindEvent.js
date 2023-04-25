@@ -4,9 +4,17 @@ import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from "react-router-dom"
 import "./Events.css"
 
+export const remainingSeats = (event, allPlayers) => {
+    const playerList = allPlayers.filter(player => player.eventsId === event.id)
+    const playerCount = playerList.length + 1
+    const availableSeats = event?.games?.maxPlayers - playerCount
+    return availableSeats
+}
+
 export const FindEvent = () => {
     const [allEvents, setAllEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
+    const [allPlayers, setAllPlayers] = useState([])
     const [searchTerms, setSearchTerms] = useState("")
     const [selectedOption, setSelectedOption] = useState("")
     const [dateSearchTerms, setDateSearchTerms] = useState({
@@ -27,6 +35,18 @@ export const FindEvent = () => {
         },
         []
     )
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/players`)
+                .then(res => res.json())
+                .then(data => {
+                    setAllPlayers(data)
+                })
+
+        },
+        []
+    )
+    
     useEffect(
         () => {
             const searchedEvents = allEvents.filter(event => event?.games?.name.toLowerCase().includes(searchTerms.toLowerCase()))
@@ -134,12 +154,13 @@ export const FindEvent = () => {
                             minute: "numeric",
                         };
                         const readableDate = dateObj.toLocaleString("en-US", options);
+                        const availableSeats = remainingSeats(event, allPlayers)
                         return (
                             <section
                                 className="event--list--item"
                                 key={`event--${event.id}`}
                             >
-                                {event?.games?.name} on {readableDate}
+                                {event?.games?.name} on {readableDate} {availableSeats === 0 && (<p className="full--tag">FULL</p>)}
                                 <button className="details--button" key={event.id} onClick={() => handleDetailsButton(event.id)}>
                                     Event Details
                                 </button>
