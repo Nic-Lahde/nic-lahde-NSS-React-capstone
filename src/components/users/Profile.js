@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { DeleteAccount } from "../modals/DeleteAccount"
 import "./Users.css"
 
 export const Profile = () => {
-
+    const [deleteProfileModal, setDeleteProfileModal] = useState(false)
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
     const navigate = useNavigate()
@@ -72,6 +73,7 @@ export const Profile = () => {
                 </div>
             </fieldset>
             <button className="update--profile--button" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Update Profile</button>
-            <button className="delete--profile--button" onClick={(clickEvent) => handleDeleteButtonClick(clickEvent)}>Delete My Account</button>
+            <button className="delete--profile--button" onClick={() => setDeleteProfileModal(true)}>Delete My Account</button>
+            {deleteProfileModal && <DeleteAccount setDeleteProfileModal={setDeleteProfileModal} id={kitchenUserObject.id}/>}
     </article>
 }
