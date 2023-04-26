@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { GameDetails } from "../modals/GameDetails"
 import "./Users.css"
 
 export const MyGames = () => {
     const [allGames, setAllGames] = useState([])
     const [ownedGames, setOwnedGames] = useState([])
+    const [gameDetails, setGameDetails] = useState(false)
+    const [selectedGameId, setSelectedGameId] = useState()
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
     const gameToAdd = {
@@ -63,7 +66,10 @@ export const MyGames = () => {
 
         })
     }
-
+    const handleImageClick = (gameId) =>{
+        setSelectedGameId(gameId)
+        setGameDetails(true)
+    }
     return (
         <>
             <fieldset className="collection--form">
@@ -89,11 +95,12 @@ export const MyGames = () => {
             <div className="collection--list">
             {
                 ownedGames.map(game => <section className="collection--list--item"
-                    key={`collection--${game.id}`}><img className="collection--item--image" alt="game box" src={game?.games?.image}/>
+                    key={`collection--${game.id}`}><img onClick={()=> handleImageClick(game?.games?.id)} className="collection--item--image" alt="game box" src={game?.games?.image}/>
                     {game?.games?.name} for {game?.games?.minPlayers} - {game?.games?.maxPlayers} players. Weight: {game?.games?.weight}
                     <button onClick={(clickEvent) => handleDeleteButtonClick(clickEvent)} className="delete--button" value={game.id}>Delete</button></section>
                 )
             }</div>
+            {gameDetails && <GameDetails setGameDetails={setGameDetails} gameId={selectedGameId}/>}
         </>
     )
 }
