@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { IncompleteForm } from "../modals/IncompleteForm"
 
 export const CreateGame = () =>{
     const navigate = useNavigate()
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
+    const [incompleteForm, setIncompleteForm] = useState(false)
     const [newGame, setNewGame] = useState({
         name: "",
         minPlayers: "",
@@ -22,7 +24,7 @@ export const CreateGame = () =>{
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
         if(newGame.name === "" || newGame.minPlayers === "" || newGame.maxPlayers === "" || newGame.weight === ""){
-            window.alert("Please fill all fields to add a game")
+           setIncompleteForm(true)
         }
         else{
         return fetch(`http://localhost:8088/games`, {
@@ -142,6 +144,7 @@ export const CreateGame = () =>{
                 </div>
             </fieldset>
             <div className="create--game--button"><button onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Create game and add to my collection</button></div>
+            {incompleteForm && <IncompleteForm setIncompleteForm={setIncompleteForm}/>}
         </form>
     )
 }

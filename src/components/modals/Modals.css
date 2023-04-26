@@ -23,6 +23,19 @@
     border-radius: 10px;
     opacity: 1;
 }
+.modal--body--incomplete{
+    height: 25em;
+    width: 30em;
+    position: relative;
+    bottom: 40em;
+    z-index: 2;
+    background-color: #E0FBFC;
+    background-image: url(https://c1.wallpaperflare.com/preview/583/849/241/paper-crease-creased-texture.jpg);
+    border: solid #293241 3px;
+    border-radius: 10px;
+    margin: auto;
+    opacity: 1;
+}
 .modal--header{
     padding-top: 2em;
 }
