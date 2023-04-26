@@ -3,8 +3,7 @@ import { Profile } from "../users/Profile"
 import { MyGames } from "../users/MyGames"
 import { CreateGame } from "../users/CreateGame"
 import { HostEvent } from "../events/HostEvent"
-import { FindEvent } from "../events/FindEvent"
-import { MyEvents } from "../events/MyEvents"
+import { EventContainer } from "../events/EventContainer"
 import { EventDetails } from "../events/EventDetails"
 export const ApplicationViews = () => {
     return (<>
@@ -26,8 +25,10 @@ export const ApplicationViews = () => {
                 <Route path="myGames" element={< MyGames />} />
                 <Route path="myGames/createGame" element={<CreateGame />} />
                 <Route path="hostEvent" element={<HostEvent />} />
-                <Route path="findEvent" element={<><MyEvents /> <FindEvent /></>} />
-                <Route path="findEvent/:eventId" element={<><MyEvents /><EventDetails /><FindEvent /></>} />
+                <Route path="findEvent" element={<EventContainer/>}>
+                    <Route index element={""}/>
+                    <Route path=":eventId" element={<EventDetails />} />            
+                </Route>
             </Route>
         </Routes>
         <img className="coffee--stain" alt="a circular coffee stain" src="https://freesvg.org/img/coffeering.png" />

@@ -11,7 +11,7 @@ export const remainingSeats = (event, allPlayers) => {
     return availableSeats
 }
 
-export const FindEvent = () => {
+export const FindEvent = ({refreshSwitch}) => {
     const [allEvents, setAllEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
     const [allPlayers, setAllPlayers] = useState([])
@@ -34,7 +34,7 @@ export const FindEvent = () => {
                 })
 
         },
-        []
+        [refreshSwitch]
     )
     useEffect(
         () => {
@@ -45,7 +45,7 @@ export const FindEvent = () => {
                 })
 
         },
-        []
+        [refreshSwitch]
     )
     
     useEffect(

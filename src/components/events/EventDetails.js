@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, useOutletContext } from "react-router-dom"
 import { GameDetails } from "../modals/GameDetails"
 
 export const EventDetails = () => {
+    const [refreshSwitch, setRefreshSwitch] = useOutletContext(false)
     const { eventId } = useParams()
     const [selectedEvent, setSelectedEvent] = useState({})
     const [gameDetails, setGameDetails] = useState(false)
@@ -46,13 +47,13 @@ export const EventDetails = () => {
             })
 
         },
-        [eventId]
+        [refreshSwitch]
     )
     useEffect(
         () => {
             getPlayers()
         },
-        [eventId]
+        [refreshSwitch]
     )
     const handleDeleteButtonClick = (event) => {
         event.preventDefault()
@@ -60,8 +61,11 @@ export const EventDetails = () => {
             method: "DELETE"
         }).then(() => {
             navigate("/findEvent")
-            window.location.reload()
-         // I am aware this is a bandaid solution
+           if(refreshSwitch){
+            setRefreshSwitch(false)
+           } else {
+            setRefreshSwitch(true)
+           }
         })
     }
     const handleJoinButton = (event) => {
@@ -75,8 +79,11 @@ export const EventDetails = () => {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.reload()
-        // I am aware this is a bandaid solution
+                if(refreshSwitch){
+                    setRefreshSwitch(false)
+                   } else {
+                    setRefreshSwitch(true)
+                   }
             })
 
     }
@@ -86,8 +93,11 @@ export const EventDetails = () => {
         fetch(`http://localhost:8088/players/${removedPlayer.id}`, {
             method: "DELETE"
         }).then(() => {
-            window.location.reload()
-         // I am aware this is a bandaid solution
+            if(refreshSwitch){
+                setRefreshSwitch(false)
+               } else {
+                setRefreshSwitch(true)
+               }
         })
     }
     const handleDismissButton = (event) => {
