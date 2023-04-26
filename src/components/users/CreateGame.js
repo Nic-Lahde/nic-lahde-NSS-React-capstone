@@ -12,14 +12,16 @@ export const CreateGame = () =>{
         minPlayers: "",
         maxPlayers: "",
         weight: "",
-        image: ""
+        image: "",
+        description: ""
     })
     const newGameObject ={
         name: newGame.name,
         minPlayers: parseInt(newGame.minPlayers),
         maxPlayers: parseInt(newGame.maxPlayers),
         weight: parseFloat(newGame.weight).toFixed(2),
-        image: newGame.image
+        image: newGame.image,
+        description: newGame.description
     }
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -138,6 +140,24 @@ export const CreateGame = () =>{
                             (evt) => {
                                 const copy = { ...newGame }
                                 copy.image = evt.target.value
+                                setNewGame(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="description">Description</label>
+                    <input
+                        required autoFocus
+                        type="text"
+                        className="form-control"
+                        placeholder="A brief description"
+                        value={newGame.description}
+                        onChange={
+                            (evt) => {
+                                const copy = { ...newGame }
+                                copy.description = evt.target.value
                                 setNewGame(copy)
                             }
                         } />

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { GameDetails } from "../modals/GameDetails"
 
 export const EventDetails = () => {
     const { eventId } = useParams()
     const [selectedEvent, setSelectedEvent] = useState({})
+    const [gameDetails, setGameDetails] = useState(false)
     const [playerList, setPlayerList] = useState([])
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
@@ -93,6 +95,9 @@ export const EventDetails = () => {
         navigate("/findEvent")
 
     }
+    const handleImageClick = () =>{
+        setGameDetails(true)
+    }
     return (<div className="event--details">
         <h1>Event Details</h1>
         <div className="results--box">
@@ -102,7 +107,7 @@ export const EventDetails = () => {
             <section>{selectedEvent?.users?.name}</section>
             <h3>Game</h3>
             <section>{selectedEvent?.games?.name}</section>
-            <img className="event--details--image" alt="picture of game box" src={selectedEvent?.games?.image}/>
+            <img onClick={handleImageClick} className="event--details--image" alt="picture of game box" src={selectedEvent?.games?.image}/>
             <h3>Time and Place</h3>
             <section>{selectedEvent?.location}</section>
             <section>{readableDate}</section>
@@ -139,6 +144,7 @@ export const EventDetails = () => {
             )}
             </div>
         </div>
+        {gameDetails && <GameDetails setGameDetails={setGameDetails} gameId={selectedEvent?.games?.id}/>}
     </div>)
 
 }

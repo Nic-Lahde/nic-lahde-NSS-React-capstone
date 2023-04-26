@@ -49,3 +49,6 @@ input.form-control{
     margin-left: 10%;
     margin-top: 10px;
 }
+.collection--item--image:hover{
+    cursor: pointer;
+}
