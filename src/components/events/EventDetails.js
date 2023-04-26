@@ -47,13 +47,13 @@ export const EventDetails = () => {
             })
 
         },
-        [refreshSwitch]
+        [refreshSwitch, eventId]
     )
     useEffect(
         () => {
             getPlayers()
         },
-        [refreshSwitch]
+        [refreshSwitch, eventId]
     )
     const handleDeleteButtonClick = (event) => {
         event.preventDefault()
