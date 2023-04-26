@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "./Events.css"
 import { useNavigate } from "react-router-dom"
 import { remainingSeats } from "./FindEvent"
-export const MyEvents = () => {
+export const MyEvents = ({refreshSwitch}) => {
     const [myEvents, setMyEvents] = useState([])
     const [myPlayerEvents, setMyPlayerEvents] = useState([])
     const [allPlayers, setAllPlayers] = useState([])
@@ -31,7 +31,7 @@ export const MyEvents = () => {
                 })
 
         },
-        []
+        [refreshSwitch]
     )
     useEffect(
         () => {
@@ -51,7 +51,7 @@ export const MyEvents = () => {
         () => {
             getMyEvents()
         },
-        []
+        [refreshSwitch]
     )
 
     return (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { GameDetails } from "../modals/GameDetails"
+import { NoGameSelected } from "../modals/NoGameSelected"
 import "./Users.css"
 
 export const MyGames = () => {
@@ -8,6 +9,7 @@ export const MyGames = () => {
     const [ownedGames, setOwnedGames] = useState([])
     const [gameDetails, setGameDetails] = useState(false)
     const [selectedGameId, setSelectedGameId] = useState()
+    const [noGameSelected, setNoGameSelected] = useState(false)
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
     const gameToAdd = {
@@ -41,7 +43,7 @@ export const MyGames = () => {
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
         if(gameToAdd.gamesId === 0 ){
-            window.alert("Please select a game")
+            setNoGameSelected(true)
         }
         else{
         return fetch(`http://localhost:8088/usersGames`, {
@@ -102,6 +104,7 @@ export const MyGames = () => {
                 )
             }</div>
             {gameDetails && <GameDetails setGameDetails={setGameDetails} gameId={selectedGameId}/>}
+            {noGameSelected && <NoGameSelected setNoGameSelected={setNoGameSelected}/>}
         </>
     )
 }
