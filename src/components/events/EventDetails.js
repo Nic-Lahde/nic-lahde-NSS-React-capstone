@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate, useOutletContext } from "react-router-dom"
 import { GameDetails } from "../modals/GameDetails"
+import { UserDetails } from "../modals/UserDetails"
 
 export const EventDetails = () => {
     const [refreshSwitch, setRefreshSwitch] = useOutletContext(false)
     const { eventId } = useParams()
     const [selectedEvent, setSelectedEvent] = useState({})
     const [gameDetails, setGameDetails] = useState(false)
+    const [userDetails, setUserDetails] = useState(false)
+    const [selectedPlayerId, setSelectedPlayerId] = useState()
     const [playerList, setPlayerList] = useState([])
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
@@ -108,13 +111,18 @@ export const EventDetails = () => {
     const handleImageClick = () =>{
         setGameDetails(true)
     }
+    const handlePlayerClick = (event) =>{
+        event.preventDefault()
+        setSelectedPlayerId(event.target.dataset.playerId);
+        setUserDetails(true)     
+    }
     return (<div className="event--details">
         <h1>Event Details</h1>
         <div className="results--box">
             <div className="results--box--no--buttons">
             <div className="results--box--host">
             <h3>Host</h3>
-            <section>{selectedEvent?.users?.name}</section>
+            <section className="host" onClick={handlePlayerClick} data-player-id={selectedEvent?.users?.id}>{selectedEvent?.users?.name}</section>
             <h3>Game</h3>
             <section>{selectedEvent?.games?.name}</section>
             <img onClick={handleImageClick} className="event--details--image" alt="picture of game box" src={selectedEvent?.games?.image}/>
@@ -124,10 +132,12 @@ export const EventDetails = () => {
             </div>
             <div className="results--box--players">
             <h3>Players</h3>
-            <section> {selectedEvent?.users?.name}
+            <section className="host" onClick={handlePlayerClick} data-player-id={selectedEvent?.users?.id}> {selectedEvent?.users?.name}
                 {
                     playerList.map(player => <section className="player--list--item"
-                        key={`player--${player.id}`}>
+                        key={`player--${player.id}`}
+                        data-player-id={player?.users?.id}
+                        onClick={handlePlayerClick}>
                         {player?.users?.name}
                     </section>
                     )
@@ -155,6 +165,7 @@ export const EventDetails = () => {
             </div>
         </div>
         {gameDetails && <GameDetails setGameDetails={setGameDetails} gameId={selectedEvent?.games?.id}/>}
+        {userDetails && <UserDetails setUserDetails={setUserDetails} userId={selectedPlayerId}/>}
     </div>)
 
 }

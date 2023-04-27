@@ -66,3 +66,6 @@ div.form-group{
    padding-left: 2px;
    padding-right: 2px;
 }
+.player--list--item:hover, .host{
+    cursor: pointer;
+}
