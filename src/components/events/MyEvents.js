@@ -14,7 +14,8 @@ export const MyEvents = ({refreshSwitch}) => {
             .then(res => res.json())
             .then(data => {
                 const sortedData = data.sort((a, b) => a.date.localeCompare(b.date))
-                setMyEvents(sortedData)
+                const filteredData = sortedData.filter(event => new Date(event.date) >= new Date())
+                setMyEvents(filteredData)
             })
 
     }
@@ -27,7 +28,8 @@ export const MyEvents = ({refreshSwitch}) => {
                 .then(([events, players]) => {
                     const sortedEvents = events.sort((a, b) => a.date.localeCompare(b.date))
                     const matchingPlayerEvents = sortedEvents.filter(event => players.find(player => player.eventsId == event.id))
-                    setMyPlayerEvents(matchingPlayerEvents)
+                    const filteredData = matchingPlayerEvents.filter(event => new Date(event.date) >= new Date())
+                    setMyPlayerEvents(filteredData)
                 })
 
         },

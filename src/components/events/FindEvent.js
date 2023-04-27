@@ -29,8 +29,9 @@ export const FindEvent = ({refreshSwitch}) => {
                 .then(res => res.json())
                 .then(data => {
                     const sortedData = data.sort((a, b) => a.date.localeCompare(b.date))
-                    setAllEvents(sortedData)
-                    setFilteredEvents(sortedData)
+                    const filteredData = sortedData.filter(event => new Date(event.date) >= new Date())
+                    setAllEvents(filteredData)
+                    setFilteredEvents(filteredData)
                 })
 
         },
