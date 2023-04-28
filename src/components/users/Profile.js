@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { DeleteAccount } from "../modals/DeleteAccount"
 import "./Users.css"
-
+/**  this component displays the user's information, allows them to edit their bio, and allows them to delete their account*/
 export const Profile = () => {
     const [deleteProfileModal, setDeleteProfileModal] = useState(false)
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
-    const navigate = useNavigate()
 
     const [profile, setProfile] = useState({
         name:"",
         email:"",
         bio:""
     })
+    /**retrieves the user's information */
     useEffect(
         () => {
             fetch(`http://localhost:8088/users/${kitchenUserObject.id}`)
@@ -24,6 +23,7 @@ export const Profile = () => {
         },
         []
     )
+    /** saves changes to the bio/about me section of user's profile */
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
 
@@ -35,19 +35,6 @@ export const Profile = () => {
             body: JSON.stringify(profile)
         })
         .then(response => response.json())
-    }
-    const handleDeleteButtonClick = (event) =>{
-        event.preventDefault()
-        if(window.confirm("This action is irreversible. Are you sure?") === true){
-           return fetch(`http://localhost:8088/users/${kitchenUserObject.id}`,{
-            method: "DELETE"
-            }).then(navigate("/login"))
-        }
-        else{
-           return window.alert("coward")
-        }
-
-        
     }
     return <article className="profile">
         <section>Name: {profile.name}</section>

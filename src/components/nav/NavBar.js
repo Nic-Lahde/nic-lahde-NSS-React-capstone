@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import "./NavBar.css"
-
+/**this is a nav bar to show links to the different areas of the site and navigate to them when clicked */
 export const NavBar = () => {
     const navigate = useNavigate()
 

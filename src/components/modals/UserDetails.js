@@ -1,8 +1,10 @@
 import "./Modals.css"
 import { useEffect, useState } from "react"
+/** this modal displays a user's profile and their game collection */
 export const UserDetails = ({ setUserDetails, userId }) => {
 
     const [selectedUserCollection, setSelectedUserCollection] = useState([])
+    /** this retrieves a users game collection and profile */
     useEffect(
         () => {
              fetch(`http://localhost:8088/usersGames?usersId=${userId}&_expand=games&_expand=users`)

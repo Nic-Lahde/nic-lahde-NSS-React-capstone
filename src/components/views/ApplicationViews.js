@@ -5,6 +5,7 @@ import { CreateGame } from "../users/CreateGame"
 import { HostEvent } from "../events/HostEvent"
 import { EventContainer } from "../events/EventContainer"
 import { EventDetails } from "../events/EventDetails"
+/** this component is the main switchboard for which components should be rendered based on the current URL */
 export const ApplicationViews = () => {
     return (<>
         <Routes>

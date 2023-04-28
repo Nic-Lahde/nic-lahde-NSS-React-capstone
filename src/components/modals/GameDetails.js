@@ -1,8 +1,10 @@
 import "./Modals.css"
 import { useEffect, useState } from "react"
+/** this modal shows a games full details as well as a much larger image of the box*/
 export const GameDetails = ({ setGameDetails, gameId }) => {
 
     const [selectedGame, setSelectedGame] = useState({})
+    /** this gets the game information for whichever game was clicked */
     useEffect(
         () => {
             fetch(`http://localhost:8088/games/${gameId}`)

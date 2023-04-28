@@ -2,11 +2,14 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 import "./Login.css"
-
+/** this component allows the user to log in so they can see the rest of the app */
 export const Login = () => {
     const [email, set] = useState("")
     const navigate = useNavigate()
-
+    /** this checks the email entered by the user against those found in the database. 
+     * if a match is found the user's id is sent to local storage to be used throughout the app. 
+     * if no match is found an error message is displayed
+     */
     const handleLogin = (e) => {
         e.preventDefault()
 

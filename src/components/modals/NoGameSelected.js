@@ -1,4 +1,5 @@
 import "./Modals.css"
+/** this modal informs the user when they have not made a game selection */
 export const NoGameSelected = ({setNoGameSelected}) =>{
     return(<><div className="modal--background"></div>
         <div className="modal--body--incomplete">

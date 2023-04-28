@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import "./Events.css"
 import { useNavigate } from "react-router-dom"
 import { remainingSeats } from "./FindEvent"
+/** this component returns two lists of events, one in which the user is the host and another in which the user is a player */
 export const MyEvents = ({refreshSwitch}) => {
     const [myEvents, setMyEvents] = useState([])
     const [myPlayerEvents, setMyPlayerEvents] = useState([])
@@ -9,6 +10,7 @@ export const MyEvents = ({refreshSwitch}) => {
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
     const navigate = useNavigate()
+    /** this gets all the events the user is hosting from the database, sorts them by date, and excludes events from past dates */
     const getMyEvents = () => {
         fetch(`http://localhost:8088/events?usersId=${kitchenUserObject.id}&_expand=games&_expand=users`)
             .then(res => res.json())
@@ -19,6 +21,7 @@ export const MyEvents = ({refreshSwitch}) => {
             })
 
     }
+    /**this gets all events from the database in which the user is a player, sorts them by date and excludes events from past dates */
     useEffect(
         () => {
             const eventsPromise = fetch(`http://localhost:8088/events?_expand=games&_expand=users`)
@@ -35,6 +38,7 @@ export const MyEvents = ({refreshSwitch}) => {
         },
         [refreshSwitch]
     )
+    /** this gets all the players from the database so we can see which events are full */
     useEffect(
         () => {
             fetch(`http://localhost:8088/players`)
@@ -46,6 +50,7 @@ export const MyEvents = ({refreshSwitch}) => {
         },
         []
     )
+    /** this brings up the EventDetails component for the selected event */
     const handleDetailsButton = (event) => {
         navigate(`/findEvent/${event.target.value}`)
     }

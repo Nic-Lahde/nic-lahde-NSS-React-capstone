@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { IncompleteForm } from "../modals/IncompleteForm"
-
+/** this component allows the user to add a new game to the database. The new game is also added to their collection. */
 export const CreateGame = () =>{
     const navigate = useNavigate()
     const localKitchenUser = localStorage.getItem("kitchen_user")
@@ -23,6 +23,7 @@ export const CreateGame = () =>{
         image: newGame.image,
         description: newGame.description
     }
+    /**sends the created game to the database and to the users collection */
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
         if(newGame.name === "" || newGame.minPlayers === "" || newGame.maxPlayers === "" || newGame.weight === ""){
