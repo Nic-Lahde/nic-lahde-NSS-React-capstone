@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { IncompleteForm } from "../modals/IncompleteForm"
 import "./Events.css"
 /** this function allows the user to input all the details of an upcoming event and then send it to the databas. they are automatically the host. */
 export const HostEvent = () => {
@@ -8,6 +9,7 @@ export const HostEvent = () => {
     const localKitchenUser = localStorage.getItem("kitchen_user")
     const kitchenUserObject = JSON.parse(localKitchenUser)
     const [ownedGames, setOwnedGames] = useState([])
+    const [incompleteForm, setIncompleteForm] = useState(false)
     const [newEvent, setNewEvent] = useState({
         usersId: kitchenUserObject.id,
         date: "",
@@ -39,7 +41,7 @@ export const HostEvent = () => {
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
         if(newEvent.date === "" || newEvent.location === "" || newEvent.gamesId === ""){
-            window.alert("Please fill out all fields")
+            setIncompleteForm(true)
         }
         else{
         return fetch(`http://localhost:8088/events`, {
@@ -120,6 +122,7 @@ export const HostEvent = () => {
                 className="btn btn-primary">
                 Host This Event
             </button>
+            {incompleteForm && <IncompleteForm setIncompleteForm={setIncompleteForm}/>}
         </form>
     )
 }
