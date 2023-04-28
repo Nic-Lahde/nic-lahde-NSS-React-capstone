@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Events.css"
-
+/** this function allows the user to input all the details of an upcoming event and then send it to the databas. they are automatically the host. */
 export const HostEvent = () => {
 
     const navigate = useNavigate()
@@ -22,6 +22,7 @@ export const HostEvent = () => {
         gamesId : newEvent.gamesId
 
     }
+    /** gets the users game collection so they can only host events to play games that they own*/
     useEffect(
         () => {
             fetch(`http://localhost:8088/usersGames?usersId=${kitchenUserObject.id}&_expand=games`)
@@ -34,6 +35,7 @@ export const HostEvent = () => {
         },
         []
     )
+    /** sends the newly created event to the database and navigates the user to the FindEvents page. If the form is incomplete it displays an error message*/
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
         if(newEvent.date === "" || newEvent.location === "" || newEvent.gamesId === ""){

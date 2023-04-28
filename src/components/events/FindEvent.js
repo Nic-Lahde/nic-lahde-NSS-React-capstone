@@ -3,14 +3,19 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from "react-router-dom"
 import "./Events.css"
-
+/** this function matches players to an event, then checks the number of matching players against the maximum number of players for the game being played at that event 
+ *and returns the number of empty seats
+ */
 export const remainingSeats = (event, allPlayers) => {
     const playerList = allPlayers.filter(player => player.eventsId === event.id)
     const playerCount = playerList.length + 1
     const availableSeats = event?.games?.maxPlayers - playerCount
     return availableSeats
 }
-
+/**this function displays all events excluding those on past dates 
+ * it shows whether the event is full
+ * users can filter the list by date range, game being played, or game weight/complexity
+*/
 export const FindEvent = ({refreshSwitch}) => {
     const [allEvents, setAllEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
@@ -23,6 +28,7 @@ export const FindEvent = ({refreshSwitch}) => {
     })
     const [weightSearchTerms, setWeightSearchTerms] = useState(0)
     const navigate = useNavigate()
+    /** gets all the events from the database, puts them in chronological order, and excludes events from past dates */
     useEffect(
         () => {
             fetch(`http://localhost:8088/events?_expand=games&_expand=users`)
@@ -37,6 +43,7 @@ export const FindEvent = ({refreshSwitch}) => {
         },
         [refreshSwitch]
     )
+    /** gets all the players(users who have joined a game and are not the host) from the database */
     useEffect(
         () => {
             fetch(`http://localhost:8088/players`)
@@ -48,7 +55,7 @@ export const FindEvent = ({refreshSwitch}) => {
         },
         [refreshSwitch]
     )
-    
+    /** filter the displayed events by the name of the game being played */
     useEffect(
         () => {
             const searchedEvents = allEvents.filter(event => event?.games?.name.toLowerCase().includes(searchTerms.toLowerCase()))
@@ -56,19 +63,23 @@ export const FindEvent = ({refreshSwitch}) => {
         },
         [searchTerms]
     )
+    /** filter the displayed events that are occuring between a start and end date */
     useEffect(() => {
         const searchedEvents = allEvents.filter(event => {
             return dateSearchTerms.startDate <= event.date && event.date <= dateSearchTerms.endDate;
         });
         setFilteredEvents(searchedEvents);
     }, [dateSearchTerms]);
+    /** filter the displayed events by the weight/complexity of the game being played */
     useEffect(() => {
         const searchedEvents = allEvents.filter(event => event?.games?.weight >= weightSearchTerms && event?.games?.weight < weightSearchTerms + 1)
         setFilteredEvents(searchedEvents)
     },[weightSearchTerms])
+    /** this indicates which search parameter is being used if any */
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value)
     }
+    /** this will cause the EventDetails component to render in the middle of the page and display the details of the clicked event */
     const handleDetailsButton = (eventId) => {
         navigate(`/findEvent/${eventId}`)
     }
