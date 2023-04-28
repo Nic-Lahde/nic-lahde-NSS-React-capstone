@@ -1,12 +1,14 @@
-import { Outlet, Route, Routes } from "react-router-dom"
+import { Outlet, Route, Routes, useLocation } from "react-router-dom"
 import { Profile } from "../users/Profile"
 import { MyGames } from "../users/MyGames"
 import { CreateGame } from "../users/CreateGame"
 import { HostEvent } from "../events/HostEvent"
 import { EventContainer } from "../events/EventContainer"
 import { EventDetails } from "../events/EventDetails"
+import "./WelcomeMessage.css"
 /** this component is the main switchboard for which components should be rendered based on the current URL */
 export const ApplicationViews = () => {
+    const location = useLocation()
     return (<>
         <Routes>
             <Route path="/" element={
@@ -17,7 +19,15 @@ export const ApplicationViews = () => {
                         <img className="main--header--image" alt="four meeples" src="../images/meeples.png" />
                     </div>
                     <h3>Connecting meeple since 2023</h3>
-
+                    {location.pathname === "/" ? (<div className="welcome--message">
+                        <p >Welcome to The Kitchen Table, the place for board game enthusiasts!</p>
+                        <p>You can schedule board game sessions,
+                            join others' games, and keep track of your collection.
+                            Whether you're looking for a light party game or a game with a 200 page rulebook,
+                            The Kitchen Table has something for everyone.</p>
+                        <p> Grab some snacks and drinks, it's game night! </p>
+                    </div>
+                    ) : ""}
                     <Outlet />
                 </>
             }>
@@ -26,9 +36,9 @@ export const ApplicationViews = () => {
                 <Route path="myGames" element={< MyGames />} />
                 <Route path="myGames/createGame" element={<CreateGame />} />
                 <Route path="hostEvent" element={<HostEvent />} />
-                <Route path="findEvent" element={<EventContainer/>}>
-                    <Route index element={""}/>
-                    <Route path=":eventId" element={<EventDetails />} />            
+                <Route path="findEvent" element={<EventContainer />}>
+                    <Route index element={""} />
+                    <Route path=":eventId" element={<EventDetails />} />
                 </Route>
             </Route>
         </Routes>

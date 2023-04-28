@@ -1,0 +1,11 @@
+.welcome--message{
+    background-color: #E0FBFC;
+    background-image: url(https://c1.wallpaperflare.com/preview/583/849/241/paper-crease-creased-texture.jpg);
+    padding: 1em;
+    width: 50%;
+    margin: auto;
+    border: solid #293241 3px;
+    border-radius: 10px;
+    font-size: large;
+    text-align: center;
+}
