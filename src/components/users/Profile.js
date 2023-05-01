@@ -42,7 +42,7 @@ export const Profile = () => {
         <section>About Me: {profile.bio}</section>
         <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">About me:</label>
+                    <label htmlFor="name">Edit About Me:</label>
                     <input
                         required autoFocus
                         type="text"
