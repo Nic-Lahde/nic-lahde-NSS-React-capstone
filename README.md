@@ -51,9 +51,17 @@ The Kitchen Table app was developed using React. The app uses a JSON server to s
    NOTICE: It is recommended to input real game information, as it cannot be removed from the server through the app.  
    Click "Create game and add to my collection". If you are navigated back to "My Games" and the new game is in your collection, move on to step 10.  
 10. Click "Host Event" and enter a date and time after todays date, any location, and select a game. The game choices should only be those in your collection.  
-    Click the "Host this Event" button. If you are navigated to "Find Event" And see your newly created event in the "My Events" box under the "Hosting" header, go to step 11.  
-    
-
+    Click the "Host this Event" button. If you are navigated to "Find Event" and see your newly created event in the "My Events" box under the "Hosting" header, go to step 11.  
+11. Click "Logout" and create another user as outlined in Step 1. Then click "Find Event". "My Events" should say "No scheduled events". Under "Search for Events" you should  
+    see the event you created in Step 10. Click the "Event Details" button attached to that event. Verify that you can click the game box or the any user's name for more details. 
+    Available seats should equal the maximum players for the game selected, minus the number of players that have joined the event(host joins automatically). 
+    If all the information is correct, click "Join Game". If the player list and number of available seats updated, click "Leave Game". If it updated again go to step 12.  
+12. Create several users and add games to their collections. Create multiple events and join other user's events that you have created. Continue doing this until you have 5 - 10  
+    events with different dates and playing different games. When you have done this, move to step 13.  
+13. Click "Find Event" and use the radio buttons to search by game, date, and weight. Verify your search results. Clicking "Show All Events" should remove all search criteria.  
+    Any events with no remaining seats available should have a red "FULL" tag on their listing. If all that works, move on to step 14.  
+14. Under "My Events" click "Event Details" on an event you are hosting. On the "Event Details" box, click the "Cancel Event" button. If the event is removed from both "My Events"  
+    and removed from "Search for Events" then congratulations, you've tested all features and the app is functioning properly.
 
 ## Difficulties & challenges during this project  
 
