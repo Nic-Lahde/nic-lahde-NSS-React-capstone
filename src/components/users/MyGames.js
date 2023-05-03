@@ -100,7 +100,7 @@ export const MyGames = () => {
             <Link className="navbar__link create__game" to="/myGames/createGame">Game not listed here? Add it!</Link>
             <h1 className="collection__header">My Collection</h1>
             <div className="collection--list">
-                <h3>{ownedGames.length} items in collection</h3>
+                <h3 className="collection--number">{ownedGames.length} items in collection</h3>
             {
                 ownedGames.map(game => <section className="collection--list--item"
                     key={`collection--${game.id}`}><img onClick={()=> handleImageClick(game?.games?.id)} className="collection--item--image" alt="game box" src={game?.games?.image}/>

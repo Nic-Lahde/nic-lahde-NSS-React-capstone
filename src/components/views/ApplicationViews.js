@@ -14,7 +14,7 @@ export const ApplicationViews = () => {
             <Route path="/" element={
                 <>
                     <div className="main--header">
-                        <img className="main--header--image" alt="two dice" src="https://www.publicdomainpictures.net/pictures/380000/nahled/two-dice-fly-on-the-rool-with-shado.png" />
+                        <img className="main--header--image" alt="two dice" src="../images/two-dice.png" />
                         <h1>The Kitchen Table</h1>
                         <img className="main--header--image" alt="four meeples" src="../images/meeples.png" />
                     </div>
@@ -46,6 +46,7 @@ export const ApplicationViews = () => {
         <img className="paper" alt="sheet of paper" src="https://cdn.pixabay.com/photo/2013/07/12/14/42/education-148605_1280.png" />
         <img className="pencil" alt="pencil" src="https://cdn.pixabay.com/photo/2012/04/01/13/08/pencil-23411_960_720.png" />
         <img className="cool--s" alt="a very cool letter S" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Cool_S.svg/450px-Cool_S.svg.png?20211026093152" />
+        <footer className="main--footer">This is where I'd put my credits and copyright information. IF I HAD ANY</footer>
     </>
     )
 

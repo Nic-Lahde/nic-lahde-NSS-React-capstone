@@ -10,6 +10,7 @@ a.navbar__link.create__game{
 }
 button.delete--button{
     margin-left: 1.5em;
+    margin-right: 5px;
 }
 section.collection--list--item{
     margin-bottom: 1.5em;
@@ -36,9 +37,6 @@ input.form-control{
     border: solid #293241 3px;
     border-radius: 10px;
 }
-.delete--button{
-   float: right;
-}
 .collection--button{
     margin-top: 0.5em;
 }
@@ -51,4 +49,8 @@ input.form-control{
 }
 .collection--item--image:hover{
     cursor: pointer;
+}
+.collection--item--image{
+    position:relative;
+    top: 5px;
 }

@@ -11,26 +11,18 @@
     justify-content: center;
     align-items: center;
 }
-.modal--body{
-    position: relative;
-    bottom: 10em;
-    height: 30em;
-    width: 100%;
-    z-index: 2;
-    background-color: #E0FBFC;
-    background-image: url(https://c1.wallpaperflare.com/preview/583/849/241/paper-crease-creased-texture.jpg);
-    border: solid #293241 3px;
-    border-radius: 10px;
-    opacity: 1;
-}
-.modal--body--game{
+.modal--body, .modal--body--game, .modal--body--incomplete{
     display: block;
+    margin: auto;
     text-align: center;
-    position: relative;
-    bottom: 50em;
+    position: fixed;
+    top: 10%;
+    bottom: 10%;
+    left: 10%;
+    right: 10%;
     height: fit-content;
     padding: 2em 0em;
-    width: 100%;
+    width: 50%;
     z-index: 2;
     background-color: #E0FBFC;
     background-image: url(https://c1.wallpaperflare.com/preview/583/849/241/paper-crease-creased-texture.jpg);
@@ -39,21 +31,8 @@
     opacity: 1;
 }
 .game--details--image{
-    height: 25em;
+    height: 350px;
     width: auto;
-}
-.modal--body--incomplete{
-    height: 25em;
-    width: 30em;
-    position: relative;
-    bottom: 40em;
-    z-index: 2;
-    background-color: #E0FBFC;
-    background-image: url(https://c1.wallpaperflare.com/preview/583/849/241/paper-crease-creased-texture.jpg);
-    border: solid #293241 3px;
-    border-radius: 10px;
-    margin: auto;
-    opacity: 1;
 }
 .modal--header{
     padding-top: 2em;
@@ -71,7 +50,7 @@
     height: fit-content;
     margin: auto;
     padding: 2em 0em;
-    width: 60%;
+    width: 50%;
     z-index: 2;
     background-color: #E0FBFC;
     background-image: url(https://c1.wallpaperflare.com/preview/583/849/241/paper-crease-creased-texture.jpg);
