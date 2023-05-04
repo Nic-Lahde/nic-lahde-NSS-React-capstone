@@ -74,3 +74,8 @@ This application uses mock authentication which is purely for demonstration purp
 - Learning React routing and when to use Outlet
 - Grouping fetch calls together to avoid async issues
 - Refraining from interacting with the window object
+
+## Project ERD
+
+
+![The Kitchen Table](https://user-images.githubusercontent.com/114097612/236234366-1f86a599-4b32-44ac-9075-56c2126818f5.png)
