@@ -6,6 +6,9 @@ The Kitchen Table is a React app that helps users schedule and join board game e
 Users can also cancel events if they are the host for that event. They can also click on other user's names to their collections and bio.  
 Users can also add new games to the database.
 
+## Video Overview
+https://www.loom.com/share/1a20de329d664f1bba4103551e421707
+
 ## Purpose and motivation for project  
 
 The purpose of The Kitchen Table is to make it easier for people to schedule and play board games with friends.  
@@ -74,3 +77,8 @@ This application uses mock authentication which is purely for demonstration purp
 - Learning React routing and when to use Outlet
 - Grouping fetch calls together to avoid async issues
 - Refraining from interacting with the window object
+
+## Project ERD
+
+
+![The Kitchen Table](https://user-images.githubusercontent.com/114097612/236234366-1f86a599-4b32-44ac-9075-56c2126818f5.png)
