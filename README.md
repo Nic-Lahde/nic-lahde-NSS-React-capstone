@@ -7,7 +7,7 @@ Users can also cancel events if they are the host for that event. They can also 
 Users can also add new games to the database.
 
 ## Video Overview
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/1a20de329d664f1bba4103551e421707" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+https://www.loom.com/share/1a20de329d664f1bba4103551e421707
 
 ## Purpose and motivation for project  
 
