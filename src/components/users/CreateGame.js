@@ -49,10 +49,14 @@ export const CreateGame = () =>{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(collectionItem)
-        }) .then(navigate("/myGames"))
-            })}
-            
+        }) .then(() => {
+            setTimeout(() => {
+              navigate("/myGames");
+            }, 500);
+          });
+        });
     }
+  };
     return(
         <form>
             <h2 className="new__game__title">New Game</h2>
