@@ -14,6 +14,7 @@ input.form-control{
 }
 .player--event--list--item, .hosted--event--list--item, .event--list--item{
     margin-bottom: 1em;
+    font-size: medium;
 }
 .radio--buttons{
     text-align: center;
